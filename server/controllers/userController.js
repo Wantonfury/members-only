@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 exports.signup = [
   body('username', 'Username must not be empty.')
@@ -21,15 +22,19 @@ exports.signup = [
       });
     }
     
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password, // TODO: hash password
-      member: req.body.member,
-      admin: req.body.admin
+    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+      if (err) return next(err);
+      
+      const user = new User({
+        username: req.body.username,
+        password: hashedPassword,
+        member: req.body.member,
+        admin: req.body.admin
+      });
+      
+      user.save()
+        .then(() => res.status(200).send())
+        .catch(err => next(err));
     });
-    
-    user.save()
-      .then(() => res.status(200).send())
-      .catch(err => next(err));
   }
 ];

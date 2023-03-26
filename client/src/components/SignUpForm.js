@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post(`${SERVER}/users/create`, userData, {
+    axios.post(`${SERVER}/users/signup`, userData, {
       headers: {
         ContentType: "multipart/form-data"
       }

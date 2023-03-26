@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
 
-exports.create = [
+exports.signup = [
   body('username', 'Username must not be empty.')
     .trim()
     .isLength({ min: 3 }).withMessage('Username must be at least 3 characters.')

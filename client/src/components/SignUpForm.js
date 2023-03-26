@@ -5,7 +5,7 @@ import axios from "axios";
 
 const SignUpForm = () => {
   const SERVER = useContext(ServerContext);
-  const [loginData, setLoginData] = useState({
+  const [userData, setUserData] = useState({
     username: '',
     password: ''
   });
@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post(`${SERVER}/users/create`, loginData, {
+    axios.post(`${SERVER}/users/create`, userData, {
       headers: {
         ContentType: "multipart/form-data"
       }
@@ -22,8 +22,8 @@ const SignUpForm = () => {
   }
   
   const handleChange = (e) => {
-    setLoginData({
-      ...loginData,
+    setUserData({
+      ...userData,
       [e.target.name]: [e.target.value]
     });
   }
@@ -35,6 +35,9 @@ const SignUpForm = () => {
       
       <label htmlFor="password">Password: </label>
       <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+      
+      <label htmlFor="password-confirm">Confirm password: </label>
+      <input type="password" name="password-confirm" placeholder="Password" />
       
       <button type="submit">Sign Up</button>
     </form>

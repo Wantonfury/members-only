@@ -5,6 +5,8 @@ import { useState } from "react";
 import Header from './components/Header';
 import Footer from "./components/Footer";
 import PostList from './components/PostList';
+import SignUpForm from './components/SignUpForm';
+import LoginForm from './components/LoginForm';
 
 function App() {
   const [user, setUser] = useState({
@@ -19,6 +21,11 @@ function App() {
       <UserContext.Provider value={{user, setUser}}>
         
         <div className="App">
+          <section>
+            <SignUpForm />
+            <LoginForm />
+          </section>
+          
           <Header />
           <PostList />
           <Footer />

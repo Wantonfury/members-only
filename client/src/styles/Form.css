@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+  gap: 20px;
+  
+  border-radius: 6px;
+}
+
+.form label,
+.form button,
+.form input::placeholder {
+  user-select: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  
+  padding-left: 1px;
+  
+  gap: 10px;
+}

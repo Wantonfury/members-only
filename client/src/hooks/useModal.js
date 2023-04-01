@@ -1,9 +1,4 @@
-import { useState, useEffect } from "react";
-
-const checkModal = (modal) => {
-  if (modal === <></> || modal === null || modal === undefined) return false;
-  return true;
-}
+import { useState } from "react";
 
 const useModal = () => {
   const [modalContent, setModalContent] = useState(<></>);

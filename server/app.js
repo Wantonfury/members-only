@@ -30,11 +30,11 @@ passport.use(
     User.findOne({ username })
     .catch(err => done(err))
     .then(user => {
-      if (user == null) return done(null, false, { message: "Incorrect username."});
+      if (user == null) return done(null, false, { msg: "Incorrect username."});
       
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) return done(null, user);
-        return done(null, false, { message: "Incorrect password." });
+        return done(null, false, { msg: "Incorrect password." });
       });
     });
   })
@@ -53,7 +53,7 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
-app.use(cors());
+app.use(cors({ origin: process.env.ORIGIN || 'http://localhost:3001', credentials: true }));
 app.use(logger('dev'));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());

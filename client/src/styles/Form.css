@@ -25,3 +25,11 @@
   
   gap: 10px;
 }
+
+.group-row {
+  flex-direction: row;
+}
+
+.form-text-error {
+  color: red;
+}

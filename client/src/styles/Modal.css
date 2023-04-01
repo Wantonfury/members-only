@@ -12,7 +12,6 @@
 
 .modal-container {
   content: '';
-  display: none;
   position: absolute;
   
   top: 0;

@@ -1,0 +1,33 @@
+@keyframes spinning-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.circle {
+  position: absolute;
+  
+  height: 100%;
+  right: 0px;
+  
+  border: solid 5px #a9a9a9;
+  border-top-color: var(--button-color);
+  border-radius: 50%;
+}
+
+.border {
+  width: 100%;
+  
+  transform: rotate(135deg);
+  animation: spinning-animation 1.3s steps(2) .2s infinite;
+  -webkit-animation: spinning-animation 1.3s linear infinite;
+}

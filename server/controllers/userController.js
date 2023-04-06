@@ -111,7 +111,11 @@ exports.relog = [
 exports.logout = (req, res, next) => {
   req.logout(err => {
     if (err) return next(err);
-    return res.clearCookie('access_token').status(200).send();
+    return res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none'
+    }).status(200).send();
   })
 }
 

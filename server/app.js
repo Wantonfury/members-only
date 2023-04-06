@@ -55,7 +55,16 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(cors({ origin: process.env.ORIGIN || 'http://localhost:3001', credentials: true }));
 app.use(logger('dev'));
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({
+  secret: "cats",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none'
+  },
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());

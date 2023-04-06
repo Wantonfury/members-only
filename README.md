@@ -38,7 +38,7 @@ $ npm install
 Create a .env file with the following:
 - MONGODB_URI: a link to a mongodb instance with a collection named members-only
 - SECRET_KEY: A secret key
-- ORIGIN: http://localhost:3001
+- ORIGIN: Only add this if the client is not hosted locally (Default is http://localhost:3000)
 
 ### Starting the client and server
 

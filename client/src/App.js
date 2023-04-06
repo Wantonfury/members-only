@@ -15,7 +15,7 @@ const defaultUser = {
   admin: false
 }
 
-const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3000";
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001";
 
 function App() {
   const [user, setUser] = useState(defaultUser);

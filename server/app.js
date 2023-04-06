@@ -53,7 +53,7 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
-app.use(cors({ origin: process.env.ORIGIN || 'http://localhost:3001', credentials: true }));
+app.use(cors({ origin: process.env.ORIGIN || 'http://localhost:3000', credentials: true }));
 app.use(logger('dev'));
 app.use(session({
   secret: "cats",

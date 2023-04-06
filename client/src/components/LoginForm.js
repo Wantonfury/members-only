@@ -50,12 +50,12 @@ const LoginForm = () => {
     <form action="" method="POST" className="form" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="username">Username</label>
-        <input type="text" name="username" placeholder="Username" pattern="[A-Za-z0-9]{3,}" title="Username must  be at least 3 characters." onChange={handleChange} required />
+        <input type="text" name="username" placeholder="Username" pattern="[A-Za-z0-9]{3,}" title="Username must be at least 3 characters." onChange={handleChange} required />
       </div>
       
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" placeholder="Password" pattern="[A-Za-z0-9]{8,}" title="Password must  be at least 8 characters." onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" pattern="[A-Za-z0-9]{8,}" title="Password must be at least 8 characters." onChange={handleChange} required />
       </div>
       
       <button type="submit" className="button button-wide">Log In</button>

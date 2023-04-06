@@ -6,6 +6,10 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const authorization = require('../middleware/authorization');
 
+const generateToken = (user) => {
+  return jwt.sign({ username: user.username, member: user.member, admin: user.admin }, process.env.SECRET_KEY);
+}
+
 exports.signup = [
   body('username', 'Username must not be empty.')
     .trim()
@@ -25,7 +29,7 @@ exports.signup = [
       });
     }
     
-    User.find({ username: req.body.username })
+    User.findOne({ username: req.body.username })
     .catch(err => console.log(err))
     .then(user => {
       if (user) return res.status(401).send({ msg: 'Username taken.' });
@@ -74,7 +78,7 @@ exports.login = [
         res.status(401).send(response);
       } else {
         req.login(user, () => {
-          const token = jwt.sign({ username: user.username, member: user.member, admin: user.admin }, process.env.SECRET_KEY);
+          const token = generateToken(user);
           
           res.cookie('access_token', token, {
             httpOnly: true,
@@ -109,3 +113,24 @@ exports.logout = (req, res, next) => {
     return res.clearCookie('access_token').status(200).send();
   })
 }
+
+exports.membership = [
+  authorization,
+  (req, res, next) => {
+    const MEMBERSHIP_CODE = "CHEESE";
+    
+    if (req.body.code === MEMBERSHIP_CODE) {
+      User.findOneAndUpdate({ username: req.username }, { member: true }, { new: true })
+        .then(user => {
+          const token = generateToken(user);
+          
+          res.cookie('access_token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production'
+          }).status(200).send();
+        })
+        .catch(err => next(err));
+    }
+    else return res.status(401).send({ msg: "Incorrect code."});
+  }
+]

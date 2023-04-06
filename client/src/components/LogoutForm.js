@@ -14,7 +14,7 @@ const LogoutForm = () => {
     e.preventDefault();
     
     axios.post(`${SERVER}/users/logout`, null, { withCredentials: true })
-      .then(() => setUser({ ...user, loggedIn: false }))
+      .then(() => setUser({ ...user, username: '', member: false, admin: false, loggedIn: false }))
       .catch(err => console.log(err))
       .finally(() => cancelLogout());
   }

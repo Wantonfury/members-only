@@ -1,7 +1,7 @@
 .button {
   background-color: var(--button-color);
   
-  width: 80px;
+  width: 100px;
   height: 40px;
   
   color: var(--button-text-color);
@@ -25,4 +25,8 @@
 
 .button-wide {
   width: 100%;
+}
+
+.button-small {
+  width: 50px;
 }

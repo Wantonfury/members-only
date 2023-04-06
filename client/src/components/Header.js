@@ -7,6 +7,8 @@ import { ModalContext } from "../contexts/ModalContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import LogoutForm from "./LogoutForm";
+import PostCreate from "./PostCreate";
+import MembershipForm from "./MembershipForm";
 
 const Header = (props) => {
   const { user } = useContext(UserContext);
@@ -27,7 +29,9 @@ const Header = (props) => {
     
     return (
       <>
-      <button className="button" onClick={() => handleModal(<LogoutForm />)}>Log Out</button>
+        {user.member ? <></> : <button className="button" onClick={() => handleModal(<MembershipForm />)}>Membership</button>}
+        <button className="button" onClick={() => handleModal(<PostCreate />)}>Create Post</button>
+        <button className="button" onClick={() => handleModal(<LogoutForm />)}>Log Out</button>
       </>
     );
   }
